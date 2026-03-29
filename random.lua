@@ -46,28 +46,22 @@ end
 
 local function TriggerImpact(pos)
 
-	for i = 1, 3 do
-		task.delay((i - 1) * 0.07, function()
-			local ring = Instance.new("Part")
-			ring.Size = Vector3.new(0.3, 2, 2)
-			ring.CFrame = CFrame.new(pos + Vector3.new(0, 0.15, 0)) * CFrame.Angles(0, 0, math.rad(90))
-			ring.Anchored = true
-			ring.CanCollide = false
-			ring.Shape = Enum.PartType.Cylinder
-			ring.Material = Enum.Material.SmoothPlastic
-			ring.Color = i == 1 and Color3.fromRGB(210, 210, 210)
-				or i == 2 and Color3.fromRGB(160, 160, 160)
-				or Color3.fromRGB(100, 100, 100)
-			ring.Transparency = 0.1
-			ring.CastShadow = false
-			ring.Parent = Workspace
-			TweenService:Create(ring, TweenInfo.new(0.5, Enum.EasingStyle.Expo, Enum.EasingDirection.Out), {
-				Size = Vector3.new(0.05, 70 + i * 12, 70 + i * 12),
-				Transparency = 1,
-			}):Play()
-			Debris:AddItem(ring, 0.55)
-		end)
-	end
+	local wave = Instance.new("Part")
+	wave.Size = Vector3.new(0.2, 1, 1)
+	wave.CFrame = CFrame.new(pos + Vector3.new(0, 0.1, 0)) * CFrame.Angles(0, 0, math.rad(90))
+	wave.Anchored = true
+	wave.CanCollide = false
+	wave.Shape = Enum.PartType.Cylinder
+	wave.Material = Enum.Material.SmoothPlastic
+	wave.Color = Color3.fromRGB(200, 200, 200)
+	wave.Transparency = 0
+	wave.CastShadow = false
+	wave.Parent = Workspace
+	TweenService:Create(wave, TweenInfo.new(0.6, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+		Size = Vector3.new(0.05, 90, 90),
+		Transparency = 1,
+	}):Play()
+	Debris:AddItem(wave, 0.65)
 
 	for i = 1, 14 do
 		local angle = math.rad((360 / 14) * i + math.random(-12, 12))
@@ -259,3 +253,5 @@ end)
 
 if player.Character then LoadAssets(player.Character) end
 player.CharacterAdded:Connect(LoadAssets)
+
+print("OVERHAND LEAP READY - BUILT BY NEO")
