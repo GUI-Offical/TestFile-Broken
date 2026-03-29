@@ -122,7 +122,7 @@ local function TriggerImpact(pos)
 						local launchDir = (dir + Vector3.new(0, 3.5, 0)).Unit
 						local forceMult = math.clamp(1 - (flatDist / 40), 0.4, 1)
 
-						npcRoot.AssemblyLinearVelocity = launchDir * (800 * forceMult)
+						npcRoot.AssemblyLinearVelocity = launchDir * (200 * forceMult)
 						npcRoot.AssemblyAngularVelocity = Vector3.new(
 							math.random(-50, 50),
 							math.random(-50, 50),
@@ -253,5 +253,3 @@ end)
 
 if player.Character then LoadAssets(player.Character) end
 player.CharacterAdded:Connect(LoadAssets)
-
-print("OVERHAND LEAP READY - BUILT BY NEO")
